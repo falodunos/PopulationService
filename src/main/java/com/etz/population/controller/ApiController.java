@@ -3,6 +3,7 @@ package com.etz.population.controller;
 import com.etz.population.model.Population;
 import com.etz.population.service.PopulationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,10 +30,8 @@ public class ApiController {
         return response;
     }
     @GetMapping(value = "list/{id}")
-    public Optional<Population> fetchById(@PathVariable Long id){
-       Optional<Population> population = populationService.findById(id);
-
-       return population;
+    public ResponseEntity<Population> fetchById(@PathVariable Long id){
+       return  ResponseEntity.ok(populationService.findById(id));
     }
 
 }
