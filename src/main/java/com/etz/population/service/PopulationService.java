@@ -35,6 +35,9 @@ public class PopulationService {
 
       Optional<Population> population = populationRepository.findById(id);
 
-        return population;
+      if (population == null) {
+          System.out.println("This ID does not exist");
+      }
+      return population;
     }
 }
