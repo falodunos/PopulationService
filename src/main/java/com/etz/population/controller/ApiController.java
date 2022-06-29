@@ -3,12 +3,10 @@ package com.etz.population.controller;
 import com.etz.population.model.Population;
 import com.etz.population.service.PopulationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/api/population/v1/")
@@ -23,14 +21,18 @@ public class ApiController {
     }
 
     @PostMapping(value = "create")
-    public Population createRecord() {
-        Population population =  new Population();
-        population.setCount(3400);
-        population.setEmail("desiree@gmail.com");
-        population.setNation("Nigeria");
-        population.setOfficer("Emmanuel");
+    public Population createRecord(@RequestBody Population population) {
 
-        return population;
+      Population response =  populationService.savePopulation(population);
+
+
+        return response;
+    }
+    @GetMapping(value = "list/{id}")
+    public Optional<Population> fetchById(@PathVariable Long id){
+       Optional<Population> population = populationService.findById(id);
+
+       return population;
     }
 
 }
