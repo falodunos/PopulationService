@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PopulationService {
@@ -16,5 +17,24 @@ public class PopulationService {
     public List<Population> fetchList() {
 
         return populationRepository.findAll();
+    }
+
+    public Population savePopulation(Population population) {
+
+        try {
+            populationRepository.save(population);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return population;
+    }
+
+    public Optional<Population> findById(Long id){
+
+
+      Optional<Population> population = populationRepository.findById(id);
+
+        return population;
     }
 }
