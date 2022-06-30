@@ -12,8 +12,8 @@ import java.util.function.Supplier;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "I could not find the kini ya looking for")
-public class NotFoundException extends RuntimeException {
-    public NotFoundException(String message){
+public class NotFoundException extends RuntimeException  {
+    public NotFoundException(String message)  {
       super(message);
   }
 
